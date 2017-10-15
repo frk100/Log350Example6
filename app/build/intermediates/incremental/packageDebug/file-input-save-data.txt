@@ -1,0 +1,21 @@
+#Internal package file, do not edit.
+#Sun Oct 15 14:29:25 EDT 2017
+2.base=C\:\\Users\\frk10\\AndroidStudioProjects\\Log350Example6\\app\\build\\intermediates\\res\\resources-debug.ap_
+5.file=C\:\\Users\\frk10\\AndroidStudioProjects\\Log350Example6\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10000\\instant-run_83c9f447acac35c3f372e07708bb73d394c97c08\\classes.dex
+5.set=DEX
+3.base=C\:\\Users\\frk10\\AndroidStudioProjects\\Log350Example6\\app\\build\\intermediates\\res\\resources-debug.ap_
+2.set=ANDROID_RESOURCE
+4.base=C\:\\Users\\frk10\\AndroidStudioProjects\\Log350Example6\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10000\\instant-run-bootstrap_f7cd9ca68855021c195abcf9ae920ce2e4bf46cb
+count=6
+0.file=C\:\\Users\\frk10\\AndroidStudioProjects\\Log350Example6\\app\\build\\intermediates\\res\\resources-debug.ap_\\AndroidManifest.xml
+5.base=C\:\\Users\\frk10\\AndroidStudioProjects\\Log350Example6\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10000\\instant-run_83c9f447acac35c3f372e07708bb73d394c97c08
+4.set=DEX
+1.file=C\:\\Users\\frk10\\AndroidStudioProjects\\Log350Example6\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\drawable-hdpi-v4\\ic_launcher.png
+1.set=ANDROID_RESOURCE
+2.file=C\:\\Users\\frk10\\AndroidStudioProjects\\Log350Example6\\app\\build\\intermediates\\res\\resources-debug.ap_\\res\\layout\\main.xml
+0.base=C\:\\Users\\frk10\\AndroidStudioProjects\\Log350Example6\\app\\build\\intermediates\\res\\resources-debug.ap_
+3.file=C\:\\Users\\frk10\\AndroidStudioProjects\\Log350Example6\\app\\build\\intermediates\\res\\resources-debug.ap_\\resources.arsc
+3.set=ANDROID_RESOURCE
+1.base=C\:\\Users\\frk10\\AndroidStudioProjects\\Log350Example6\\app\\build\\intermediates\\res\\resources-debug.ap_
+4.file=C\:\\Users\\frk10\\AndroidStudioProjects\\Log350Example6\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10000\\instant-run-bootstrap_f7cd9ca68855021c195abcf9ae920ce2e4bf46cb\\classes.dex
+0.set=ANDROID_RESOURCE

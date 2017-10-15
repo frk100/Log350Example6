@@ -1,0 +1,4 @@
+#Sun Oct 15 14:29:24 EDT 2017
+base.0=C\:\\Users\\frk10\\AndroidStudioProjects\\Log350Example6\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\5\\slice_6
+renamed.0=classes.dex
+file.0=C\:\\Users\\frk10\\AndroidStudioProjects\\Log350Example6\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\5\\slice_6\\classes.dex

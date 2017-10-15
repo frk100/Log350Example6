@@ -1,0 +1,7 @@
+#Sun Oct 15 14:29:25 EDT 2017
+base.0=C\:\\Users\\frk10\\AndroidStudioProjects\\Log350Example6\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10000\\instant-run_83c9f447acac35c3f372e07708bb73d394c97c08
+renamed.1=classes2.dex
+renamed.0=classes.dex
+file.1=C\:\\Users\\frk10\\AndroidStudioProjects\\Log350Example6\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10000\\instant-run-bootstrap_f7cd9ca68855021c195abcf9ae920ce2e4bf46cb\\classes.dex
+base.1=C\:\\Users\\frk10\\AndroidStudioProjects\\Log350Example6\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10000\\instant-run-bootstrap_f7cd9ca68855021c195abcf9ae920ce2e4bf46cb
+file.0=C\:\\Users\\frk10\\AndroidStudioProjects\\Log350Example6\\app\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10000\\instant-run_83c9f447acac35c3f372e07708bb73d394c97c08\\classes.dex
