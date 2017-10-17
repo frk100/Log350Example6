@@ -173,6 +173,7 @@ public class DrawingView extends View {
 	ShapeContainer shapeContainer = new ShapeContainer();
 	ArrayList< Shape > selectedShapes = new ArrayList< Shape >();
 	CursorContainer cursorContainer = new CursorContainer();
+	ArrayList<Point2D> pointtemp = new ArrayList<Point2D>();
 
 	static final int MODE_NEUTRAL = 0; // the default mode
 	static final int MODE_CAMERA_MANIPULATION = 1; // the user is panning/zooming the camera
@@ -247,7 +248,7 @@ public class DrawingView extends View {
 			}
 			points = Point2DUtil.computeConvexHull( points );
 			points = Point2DUtil.computeExpandedPolygon( points, rect.getDiagonal().length()/30 );
-
+            pointtemp = points;
 			gw.setColor( 1.0f, 0.0f, 0.0f, 0.8f );
 			gw.fillPolygon( points );
 		}
@@ -358,6 +359,10 @@ public class DrawingView extends View {
 								currentMode = MODE_DELETE;
 								cursor.setType( MyCursor.TYPE_BUTTON);
 							}
+							else if(Point2DUtil.isPointInsidePolygon( pointtemp, p_pixels )){
+								currentMode = MODE_SHAPE_MANIPULATION_SELECTION;
+								cursor.setType( MyCursor.TYPE_DRAGGING );
+							}
 							else if ( indexOfShapeBeingManipulated >= 0 ) {
 								currentMode = MODE_SHAPE_MANIPULATION;
 								cursor.setType( MyCursor.TYPE_DRAGGING );
@@ -441,6 +446,7 @@ public class DrawingView extends View {
 							Shape shape = shapeContainer.getShape( indexOfShapeBeingManipulated );
 							indexOfShapeBeingManipulated = shapeContainer.indexOfShapeContainingGivenPoint( p_world );
 							shapeContainer.deleteShape(indexOfShapeBeingManipulated);
+							currentMode = MODE_NEUTRAL;
 						}
 							break;
 					case MODE_LASSO :
@@ -468,7 +474,6 @@ public class DrawingView extends View {
 								for ( Shape s : shapeContainer.shapes ) {
 									if ( s.isContainedInLassoPolygon( lassoPolygonPoints ) ) {
 										selectedShapes.add( s );
-										currentMode = TR;
 									}
 								}
 							}
@@ -479,7 +484,7 @@ public class DrawingView extends View {
 						}
 						break;
 						case MODE_SHAPE_MANIPULATION_SELECTION :
-							if (cursorContainer.getNumCursors() == 1 && type == MotionEvent.ACTION_UP) {
+							if (cursorContainer.getNumCursors() == 1 && type == MotionEvent.ACTION_MOVE) {
 									MyCursor cursor0 = cursorContainer.getCursorByIndex( 0 );
 									MyCursor cursor1 = cursorContainer.getCursorByIndex( 0 );
 
@@ -491,6 +496,13 @@ public class DrawingView extends View {
 											gw.convertPixelsToWorldSpaceUnits( cursor0.getCurrentPosition() ),
 											gw.convertPixelsToWorldSpaceUnits( cursor1.getCurrentPosition() )
 									);
+								}
+							}
+							else if ( type == MotionEvent.ACTION_UP ) {
+								cursorContainer.removeCursorByIndex( cursorIndex );
+								if ( cursorContainer.getNumCursors() == 0 ) {
+									currentMode = MODE_NEUTRAL;
+									indexOfShapeBeingManipulated = -1;
 								}
 							}
 							break;

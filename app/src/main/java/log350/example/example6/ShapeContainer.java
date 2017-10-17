@@ -23,6 +23,10 @@ class ShapeContainer {
 		return -1;
 	}
 
+	public void deleteShape(int index){
+		shapes.remove(index);
+	}
+
 	public void draw( GraphicsWrapper gw, int indexOfShapeToHighlight /* -1 for none */ ) {
 		for ( int i = 0; i < shapes.size(); ++i ) {
 			Shape s = shapes.get(i);
