@@ -372,6 +372,17 @@ public class DrawingView extends View {
 								cursor1.getCurrentPosition()
 							);
 						}
+                        if ( cursorContainer.getNumCursors() == 1 && type == MotionEvent.ACTION_MOVE ) {
+                            MyCursor cursor0 = cursorContainer.getCursorByIndex( 0 );
+                            MyCursor cursor1 = cursorContainer.getCursorByIndex( 0 );
+                            // MyCursor otherCursor = ( cursor == cursor0 ) ? cursor1 : cursor0;
+                            gw.panAndZoomBasedOnDisplacementOfTwoPoints(
+                                    cursor0.getPreviousPosition(),
+                                    cursor1.getPreviousPosition(),
+                                    cursor0.getCurrentPosition(),
+                                    cursor1.getCurrentPosition()
+                            );
+                        }
 						else if ( type == MotionEvent.ACTION_UP ) {
 							cursorContainer.removeCursorByIndex( cursorIndex );
 							if ( cursorContainer.getNumCursors() == 0 )
@@ -392,6 +403,19 @@ public class DrawingView extends View {
 								gw.convertPixelsToWorldSpaceUnits( cursor1.getCurrentPosition() )
 							);
 						}
+                        if ( cursorContainer.getNumCursors() == 1 && type == MotionEvent.ACTION_MOVE && indexOfShapeBeingManipulated>=0 ) {
+                            MyCursor cursor0 = cursorContainer.getCursorByIndex( 0 );
+                            MyCursor cursor1 = cursorContainer.getCursorByIndex( 0 );
+                            Shape shape = shapeContainer.getShape( indexOfShapeBeingManipulated );
+
+                            Point2DUtil.transformPointsBasedOnDisplacementOfTwoPoints(
+                                    shape.getPoints(),
+                                    gw.convertPixelsToWorldSpaceUnits( cursor0.getPreviousPosition() ),
+                                    gw.convertPixelsToWorldSpaceUnits( cursor1.getPreviousPosition() ),
+                                    gw.convertPixelsToWorldSpaceUnits( cursor0.getCurrentPosition() ),
+                                    gw.convertPixelsToWorldSpaceUnits( cursor1.getCurrentPosition() )
+                            );
+                        }
 						else if ( type == MotionEvent.ACTION_UP ) {
 							cursorContainer.removeCursorByIndex( cursorIndex );
 							if ( cursorContainer.getNumCursors() == 0 ) {
