@@ -178,13 +178,15 @@ public class DrawingView extends View {
 	static final int MODE_CAMERA_MANIPULATION = 1; // the user is panning/zooming the camera
 	static final int MODE_SHAPE_MANIPULATION = 2; // the user is translating/rotating/scaling a shape
 	static final int MODE_LASSO = 3; // the user is drawing a lasso to select shapes
+	static final int MODE_DELETE = 4;
 	int currentMode = MODE_NEUTRAL;
 
 	// This is only used when currentMode==MODE_SHAPE_MANIPULATION, otherwise it is equal to -1
 	int indexOfShapeBeingManipulated = -1;
 
 	MyButton lassoButton = new MyButton( "Lasso", 10, 70, 140, 140 );
-	
+	MyButton deleteButton = new MyButton( "Delete", 10, 220, 140, 140 );
+
 	OnTouchListener touchListener;
 	
 	public DrawingView(Context context) {
@@ -255,6 +257,7 @@ public class DrawingView extends View {
 		gw.setCoordinateSystemToPixels();
 
 		lassoButton.draw( gw, currentMode == MODE_LASSO );
+		deleteButton.draw( gw, currentMode == MODE_DELETE );
 
 		if ( currentMode == MODE_LASSO ) {
 			MyCursor lassoCursor = cursorContainer.getCursorByType( MyCursor.TYPE_DRAGGING, 0 );
@@ -350,6 +353,10 @@ public class DrawingView extends View {
 								currentMode = MODE_LASSO;
 								cursor.setType( MyCursor.TYPE_BUTTON );
 							}
+							if ( deleteButton.contains(p_pixels) ) {
+								currentMode = MODE_DELETE;
+								cursor.setType( MyCursor.TYPE_BUTTON);
+							}
 							else if ( indexOfShapeBeingManipulated >= 0 ) {
 								currentMode = MODE_SHAPE_MANIPULATION;
 								cursor.setType( MyCursor.TYPE_DRAGGING );
@@ -424,6 +431,18 @@ public class DrawingView extends View {
 							}
 						}
 						break;
+					case MODE_DELETE :
+						if (cursorContainer.getNumCursors() == 2 && type == MotionEvent.ACTION_UP && indexOfShapeBeingManipulated>=0) {
+							MyCursor cursor0 = cursorContainer.getCursorByIndex( 0 );
+							MyCursor cursor1 = cursorContainer.getCursorByIndex( 1 );
+							Point2D p_pixels = new Point2D(x,y);
+							Point2D p_world = gw.convertPixelsToWorldSpaceUnits( p_pixels );
+							Shape shape = shapeContainer.getShape( indexOfShapeBeingManipulated );
+							indexOfShapeBeingManipulated = shapeContainer.indexOfShapeContainingGivenPoint( p_world );
+							shapeContainer.deleteShape(indexOfShapeBeingManipulated);
+
+						}
+							break;
 					case MODE_LASSO :
 						if ( type == MotionEvent.ACTION_DOWN ) {
 							if ( cursorContainer.getNumCursorsOfGivenType(MyCursor.TYPE_DRAGGING) == 1 )
