@@ -179,6 +179,7 @@ public class DrawingView extends View {
 	static final int MODE_SHAPE_MANIPULATION = 2; // the user is translating/rotating/scaling a shape
 	static final int MODE_LASSO = 3; // the user is drawing a lasso to select shapes
 	static final int MODE_DELETE = 4;
+	static final int MODE_SHAPE_MANIPULATION_SELECTION = 5;
 	int currentMode = MODE_NEUTRAL;
 
 	// This is only used when currentMode==MODE_SHAPE_MANIPULATION, otherwise it is equal to -1
@@ -353,7 +354,7 @@ public class DrawingView extends View {
 								currentMode = MODE_LASSO;
 								cursor.setType( MyCursor.TYPE_BUTTON );
 							}
-							if ( deleteButton.contains(p_pixels) ) {
+							else if ( deleteButton.contains(p_pixels) ) {
 								currentMode = MODE_DELETE;
 								cursor.setType( MyCursor.TYPE_BUTTON);
 							}
@@ -440,7 +441,6 @@ public class DrawingView extends View {
 							Shape shape = shapeContainer.getShape( indexOfShapeBeingManipulated );
 							indexOfShapeBeingManipulated = shapeContainer.indexOfShapeContainingGivenPoint( p_world );
 							shapeContainer.deleteShape(indexOfShapeBeingManipulated);
-
 						}
 							break;
 					case MODE_LASSO :
@@ -468,6 +468,7 @@ public class DrawingView extends View {
 								for ( Shape s : shapeContainer.shapes ) {
 									if ( s.isContainedInLassoPolygon( lassoPolygonPoints ) ) {
 										selectedShapes.add( s );
+										currentMode = TR;
 									}
 								}
 							}
@@ -477,6 +478,22 @@ public class DrawingView extends View {
 							}
 						}
 						break;
+						case MODE_SHAPE_MANIPULATION_SELECTION :
+							if (cursorContainer.getNumCursors() == 1 && type == MotionEvent.ACTION_UP) {
+									MyCursor cursor0 = cursorContainer.getCursorByIndex( 0 );
+									MyCursor cursor1 = cursorContainer.getCursorByIndex( 0 );
+
+								for (Shape shape:selectedShapes) {
+									Point2DUtil.transformPointsBasedOnDisplacementOfTwoPoints(
+											shape.getPoints(),
+											gw.convertPixelsToWorldSpaceUnits( cursor0.getPreviousPosition() ),
+											gw.convertPixelsToWorldSpaceUnits( cursor1.getPreviousPosition() ),
+											gw.convertPixelsToWorldSpaceUnits( cursor0.getCurrentPosition() ),
+											gw.convertPixelsToWorldSpaceUnits( cursor1.getCurrentPosition() )
+									);
+								}
+							}
+							break;
 					}
 					
 					v.invalidate();
