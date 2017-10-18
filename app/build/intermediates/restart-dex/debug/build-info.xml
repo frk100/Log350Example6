@@ -2,27 +2,92 @@
 <instant-run
     abi="arm64-v8a,armeabi-v7a,armeabi"
     api-level="24"
+<<<<<<< HEAD
     build-mode="COLD"
     density="xxxhdpi"
     format="10"
     plugin-version="2.3.3"
     timestamp="1508344577732"
+=======
+<<<<<<< HEAD
+    build-mode="FULL"
+    density="xxxhdpi"
+    format="10"
+    plugin-version="2.3.3"
+    timestamp="1508337912229"
+=======
+    build-mode="COLD"
+    density="xxxhdpi"
+    format="10"
+    plugin-version="2.3.3"
+    timestamp="1508264249149"
+>>>>>>> origin/master
+>>>>>>> origin/master
     token="2230238368332260971"
     verifier="COLD_SWAP_REQUESTED" >
 
     <task
         name="javac"
-        duration="0" />
+<<<<<<< HEAD
+        duration="727" />
+=======
+        duration="246" />
+>>>>>>> origin/master
     <task
         name="instant-run-dex"
         duration="0" />
     <task
         name="instant-run-transform"
-        duration="0" />
+<<<<<<< HEAD
+        duration="81" />
     <task
         name="verifier"
-        duration="0" />
+        duration="49" />
+=======
+        duration="18" />
+    <task
+        name="verifier"
+        duration="7" />
+>>>>>>> origin/master
 
+<<<<<<< HEAD
+=======
+    <artifact
+        location="C:\Users\frk10\AndroidStudioProjects\Log350Example6\app\build\intermediates\split-apk\debug\slices\slice_0.apk"
+        type="SPLIT" />
+<<<<<<< HEAD
+    <artifact
+        location="C:\Users\frk10\AndroidStudioProjects\Log350Example6\app\build\intermediates\split-apk\debug\slices\slice_6.apk"
+        type="SPLIT" />
+    <artifact
+        location="C:\Users\frk10\AndroidStudioProjects\Log350Example6\app\build\intermediates\split-apk\debug\slices\slice_5.apk"
+        type="SPLIT" />
+    <artifact
+        location="C:\Users\frk10\AndroidStudioProjects\Log350Example6\app\build\intermediates\split-apk\debug\slices\slice_7.apk"
+        type="SPLIT" />
+    <artifact
+        location="C:\Users\frk10\AndroidStudioProjects\Log350Example6\app\build\intermediates\split-apk\debug\slices\slice_8.apk"
+        type="SPLIT" />
+    <artifact
+        location="C:\Users\frk10\AndroidStudioProjects\Log350Example6\app\build\intermediates\split-apk\debug\slices\slice_9.apk"
+        type="SPLIT" />
+    <artifact
+        location="C:\Users\frk10\AndroidStudioProjects\Log350Example6\app\build\intermediates\split-apk\debug\slices\slice_3.apk"
+        type="SPLIT" />
+    <artifact
+        location="C:\Users\frk10\AndroidStudioProjects\Log350Example6\app\build\intermediates\split-apk\debug\slices\slice_4.apk"
+        type="SPLIT" />
+    <artifact
+        location="C:\Users\frk10\AndroidStudioProjects\Log350Example6\app\build\intermediates\split-apk\debug\slices\slice_2.apk"
+        type="SPLIT" />
+    <artifact
+        location="C:\Users\frk10\AndroidStudioProjects\Log350Example6\app\build\intermediates\split-apk\debug\slices\slice_1.apk"
+        type="SPLIT" />
+    <artifact
+        location="C:\Users\frk10\AndroidStudioProjects\Log350Example6\app\build\outputs\apk\app-debug.apk"
+        type="SPLIT_MAIN" />
+
+>>>>>>> origin/master
     <build
         build-mode="FULL"
         timestamp="1508337912229"
@@ -35,27 +100,50 @@
             type="SPLIT" />
         <artifact
             location="C:\Users\frk10\AndroidStudioProjects\Log350Example6\app\build\intermediates\split-apk\debug\slices\slice_5.apk"
+=======
+
+    <build
+        build-mode="FULL"
+        timestamp="1508261192837"
+        verifier="FULL_BUILD_REQUESTED" >
+        <artifact
+            location="C:\Users\frk10\AndroidStudioProjects\Log350Example6\app\build\intermediates\split-apk\debug\slices\slice_3.apk"
+>>>>>>> origin/master
             type="SPLIT" />
         <artifact
             location="C:\Users\frk10\AndroidStudioProjects\Log350Example6\app\build\intermediates\split-apk\debug\slices\slice_7.apk"
+            type="SPLIT" />
+        <artifact
+            location="C:\Users\frk10\AndroidStudioProjects\Log350Example6\app\build\intermediates\split-apk\debug\slices\slice_5.apk"
+            type="SPLIT" />
+        <artifact
+            location="C:\Users\frk10\AndroidStudioProjects\Log350Example6\app\build\intermediates\split-apk\debug\slices\slice_0.apk"
+            type="SPLIT" />
+        <artifact
+            location="C:\Users\frk10\AndroidStudioProjects\Log350Example6\app\build\intermediates\split-apk\debug\slices\slice_6.apk"
+            type="SPLIT" />
+        <artifact
+            location="C:\Users\frk10\AndroidStudioProjects\Log350Example6\app\build\intermediates\split-apk\debug\slices\slice_1.apk"
+            type="SPLIT" />
+        <artifact
+            location="C:\Users\frk10\AndroidStudioProjects\Log350Example6\app\build\intermediates\split-apk\debug\slices\slice_2.apk"
+            type="SPLIT" />
+        <artifact
+<<<<<<< HEAD
+            location="C:\Users\frk10\AndroidStudioProjects\Log350Example6\app\build\intermediates\split-apk\debug\slices\slice_1.apk"
+=======
+<<<<<<< HEAD
+            location="C:\Users\frk10\AndroidStudioProjects\Log350Example6\app\build\intermediates\split-apk\debug\slices\slice_1.apk"
+=======
+            location="C:\Users\frk10\AndroidStudioProjects\Log350Example6\app\build\intermediates\split-apk\debug\slices\slice_4.apk"
             type="SPLIT" />
         <artifact
             location="C:\Users\frk10\AndroidStudioProjects\Log350Example6\app\build\intermediates\split-apk\debug\slices\slice_8.apk"
             type="SPLIT" />
         <artifact
             location="C:\Users\frk10\AndroidStudioProjects\Log350Example6\app\build\intermediates\split-apk\debug\slices\slice_9.apk"
-            type="SPLIT" />
-        <artifact
-            location="C:\Users\frk10\AndroidStudioProjects\Log350Example6\app\build\intermediates\split-apk\debug\slices\slice_3.apk"
-            type="SPLIT" />
-        <artifact
-            location="C:\Users\frk10\AndroidStudioProjects\Log350Example6\app\build\intermediates\split-apk\debug\slices\slice_4.apk"
-            type="SPLIT" />
-        <artifact
-            location="C:\Users\frk10\AndroidStudioProjects\Log350Example6\app\build\intermediates\split-apk\debug\slices\slice_2.apk"
-            type="SPLIT" />
-        <artifact
-            location="C:\Users\frk10\AndroidStudioProjects\Log350Example6\app\build\intermediates\split-apk\debug\slices\slice_1.apk"
+>>>>>>> origin/master
+>>>>>>> origin/master
             type="SPLIT" />
         <artifact
             location="C:\Users\frk10\AndroidStudioProjects\Log350Example6\app\build\outputs\apk\app-debug.apk"
@@ -63,15 +151,22 @@
     </build>
     <build
         build-mode="COLD"
+<<<<<<< HEAD
         timestamp="1508344465760"
+=======
+        timestamp="1508264249149"
+>>>>>>> origin/master
         verifier="COLD_SWAP_REQUESTED" >
         <artifact
             location="C:\Users\frk10\AndroidStudioProjects\Log350Example6\app\build\intermediates\split-apk\debug\slices\slice_0.apk"
             type="SPLIT" />
     </build>
+<<<<<<< HEAD
     <build
         build-mode="COLD"
         timestamp="1508344577732"
         verifier="COLD_SWAP_REQUESTED" />
+=======
+>>>>>>> origin/master
 
 </instant-run>

@@ -243,6 +243,11 @@ public class DrawingView extends View {
 		pointtemp.clear();
 		// draw a polygon around the currently selected shapes
 		if ( selectedShapes.size() > 0 ) {
+<<<<<<< HEAD
+=======
+			pointtemp.clear();
+			ArrayList< Point2D > points = new ArrayList< Point2D >();
+>>>>>>> origin/master
 			AlignedRectangle2D rect = new AlignedRectangle2D();
 			for ( Shape s : selectedShapes ) {
 				for ( Point2D p : s.getPoints() ) {
@@ -250,6 +255,18 @@ public class DrawingView extends View {
 					pointtemp.add( p );
 				}
 			}
+<<<<<<< HEAD
+=======
+			/*points = Point2DUtil.computeConvexHull( points );
+			points = Point2DUtil.computeExpandedPolygon( points, rect.getDiagonal().length()/30 );
+<<<<<<< HEAD
+=======
+            pointtemp = points;
+>>>>>>> origin/master
+			gw.setColor( 1.0f, 0.0f, 0.0f, 0.8f );
+			gw.fillPolygon( points );*/
+
+>>>>>>> origin/master
 			pointtemp = Point2DUtil.computeConvexHull( pointtemp );
 			pointtemp = Point2DUtil.computeExpandedPolygon( pointtemp, rect.getDiagonal().length()/30 );
 			gw.setColor( 0.0f, 1.0f, 0.0f, 0.8f );
@@ -363,6 +380,7 @@ public class DrawingView extends View {
 								currentMode = MODE_DELETE;
 								cursor.setType( MyCursor.TYPE_BUTTON);
 							}
+<<<<<<< HEAD
 							else if (encadreButton.contains(p_pixels) ) {
 								currentMode = MODE_FRAME;
 								cursor.setType (MyCursor.TYPE_BUTTON);
@@ -372,6 +390,13 @@ public class DrawingView extends View {
 								cursor.setType (MyCursor.TYPE_BUTTON);
 							}
 							else if(Point2DUtil.isPointInsidePolygon(pointtemp, p_world )){
+=======
+<<<<<<< HEAD
+							else if(Point2DUtil.isPointInsidePolygon(pointtemp, p_pixels )){
+=======
+							else if(Point2DUtil.isPointInsidePolygon( pointtemp, p_pixels )){
+>>>>>>> origin/master
+>>>>>>> origin/master
 								currentMode = MODE_SHAPE_MANIPULATION_SELECTION;
 								cursor.setType( MyCursor.TYPE_DRAGGING );
 							}
@@ -449,6 +474,7 @@ public class DrawingView extends View {
 						}
 						break;
 					case MODE_DELETE :
+<<<<<<< HEAD
 						if (type == MotionEvent.ACTION_DOWN) {
 							Point2D p_pixels = cursorContainer.getCursorByIndex(1).getCurrentPosition();
 							Point2D p_world = gw.convertPixelsToWorldSpaceUnits( p_pixels );
@@ -468,6 +494,38 @@ public class DrawingView extends View {
 						}
 						break;
 
+=======
+<<<<<<< HEAD
+							if (type == MotionEvent.ACTION_DOWN && indexOfShapeBeingManipulated>=0) {
+								Point2D p_pixels = new Point2D(x,y);
+								Point2D p_world = gw.convertPixelsToWorldSpaceUnits( p_pixels );
+								Shape shape = shapeContainer.getShape( indexOfShapeBeingManipulated );
+								indexOfShapeBeingManipulated = shapeContainer.indexOfShapeContainingGivenPoint( p_world );
+								if(selectedShapes.contains(shape)){
+									selectedShapes.remove(shape);
+								}
+								shapeContainer.deleteShape(indexOfShapeBeingManipulated);
+							}
+							else if ( type == MotionEvent.ACTION_UP ) {
+								cursorContainer.removeCursorByIndex(cursorIndex);
+								if (cursorContainer.getNumCursors() == 0)
+									currentMode = MODE_NEUTRAL;
+							}
+						break;
+=======
+						if (cursorContainer.getNumCursors() == 2 && type == MotionEvent.ACTION_UP && indexOfShapeBeingManipulated>=0) {
+							MyCursor cursor0 = cursorContainer.getCursorByIndex( 0 );
+							MyCursor cursor1 = cursorContainer.getCursorByIndex( 1 );
+							Point2D p_pixels = new Point2D(x,y);
+							Point2D p_world = gw.convertPixelsToWorldSpaceUnits( p_pixels );
+							Shape shape = shapeContainer.getShape( indexOfShapeBeingManipulated );
+							indexOfShapeBeingManipulated = shapeContainer.indexOfShapeContainingGivenPoint( p_world );
+							shapeContainer.deleteShape(indexOfShapeBeingManipulated);
+							currentMode = MODE_NEUTRAL;
+						}
+							break;
+>>>>>>> origin/master
+>>>>>>> origin/master
 					case MODE_LASSO :
 						if ( type == MotionEvent.ACTION_DOWN ) {
 							if ( cursorContainer.getNumCursorsOfGivenType(MyCursor.TYPE_DRAGGING) == 1 )
@@ -525,6 +583,7 @@ public class DrawingView extends View {
 									indexOfShapeBeingManipulated = -1;
 								}
 							}
+<<<<<<< HEAD
 							break;
 
 						case MODE_FRAME :
@@ -552,6 +611,19 @@ public class DrawingView extends View {
 							{
 								currentMode = MODE_NEUTRAL;
 							}
+=======
+<<<<<<< HEAD
+							break;
+
+						case MODE_FRAME :
+							
+							break;
+
+						case MODE_CREATE :
+
+=======
+>>>>>>> origin/master
+>>>>>>> origin/master
 							break;
 					}
 					
