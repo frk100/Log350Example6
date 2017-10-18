@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <instant-run
-    abi="x86"
-    api-level="26"
-    build-mode="FULL"
-    density="420dpi"
+    abi="arm64-v8a,armeabi-v7a,armeabi"
+    api-level="24"
+    build-mode="COLD"
+    density="xxxhdpi"
     format="10"
     plugin-version="2.3.3"
-    timestamp="1508092313850"
+    timestamp="1508344577732"
     token="2230238368332260971"
-    verifier="FULL_BUILD_REQUESTED" >
+    verifier="COLD_SWAP_REQUESTED" >
 
     <task
         name="javac"
@@ -23,44 +23,13 @@
         name="verifier"
         duration="0" />
 
-    <artifact
-        location="C:\Users\frk10\AndroidStudioProjects\Log350Example6\app\build\intermediates\split-apk\debug\slices\slice_6.apk"
-        type="SPLIT" />
-    <artifact
-        location="C:\Users\frk10\AndroidStudioProjects\Log350Example6\app\build\intermediates\split-apk\debug\slices\slice_5.apk"
-        type="SPLIT" />
-    <artifact
-        location="C:\Users\frk10\AndroidStudioProjects\Log350Example6\app\build\intermediates\split-apk\debug\slices\slice_7.apk"
-        type="SPLIT" />
-    <artifact
-        location="C:\Users\frk10\AndroidStudioProjects\Log350Example6\app\build\intermediates\split-apk\debug\slices\slice_8.apk"
-        type="SPLIT" />
-    <artifact
-        location="C:\Users\frk10\AndroidStudioProjects\Log350Example6\app\build\intermediates\split-apk\debug\slices\slice_9.apk"
-        type="SPLIT" />
-    <artifact
-        location="C:\Users\frk10\AndroidStudioProjects\Log350Example6\app\build\intermediates\split-apk\debug\slices\slice_3.apk"
-        type="SPLIT" />
-    <artifact
-        location="C:\Users\frk10\AndroidStudioProjects\Log350Example6\app\build\intermediates\split-apk\debug\slices\slice_4.apk"
-        type="SPLIT" />
-    <artifact
-        location="C:\Users\frk10\AndroidStudioProjects\Log350Example6\app\build\intermediates\split-apk\debug\slices\slice_2.apk"
-        type="SPLIT" />
-    <artifact
-        location="C:\Users\frk10\AndroidStudioProjects\Log350Example6\app\build\intermediates\split-apk\debug\slices\slice_0.apk"
-        type="SPLIT" />
-    <artifact
-        location="C:\Users\frk10\AndroidStudioProjects\Log350Example6\app\build\intermediates\split-apk\debug\slices\slice_1.apk"
-        type="SPLIT" />
-    <artifact
-        location="C:\Users\frk10\AndroidStudioProjects\Log350Example6\app\build\outputs\apk\app-debug.apk"
-        type="SPLIT_MAIN" />
-
     <build
         build-mode="FULL"
-        timestamp="1508092313850"
+        timestamp="1508337912229"
         verifier="FULL_BUILD_REQUESTED" >
+        <artifact
+            location="C:\Users\frk10\AndroidStudioProjects\Log350Example6\app\build\intermediates\split-apk\debug\slices\slice_0.apk"
+            type="SPLIT" />
         <artifact
             location="C:\Users\frk10\AndroidStudioProjects\Log350Example6\app\build\intermediates\split-apk\debug\slices\slice_6.apk"
             type="SPLIT" />
@@ -86,14 +55,23 @@
             location="C:\Users\frk10\AndroidStudioProjects\Log350Example6\app\build\intermediates\split-apk\debug\slices\slice_2.apk"
             type="SPLIT" />
         <artifact
-            location="C:\Users\frk10\AndroidStudioProjects\Log350Example6\app\build\intermediates\split-apk\debug\slices\slice_0.apk"
-            type="SPLIT" />
-        <artifact
             location="C:\Users\frk10\AndroidStudioProjects\Log350Example6\app\build\intermediates\split-apk\debug\slices\slice_1.apk"
             type="SPLIT" />
         <artifact
             location="C:\Users\frk10\AndroidStudioProjects\Log350Example6\app\build\outputs\apk\app-debug.apk"
             type="SPLIT_MAIN" />
     </build>
+    <build
+        build-mode="COLD"
+        timestamp="1508344465760"
+        verifier="COLD_SWAP_REQUESTED" >
+        <artifact
+            location="C:\Users\frk10\AndroidStudioProjects\Log350Example6\app\build\intermediates\split-apk\debug\slices\slice_0.apk"
+            type="SPLIT" />
+    </build>
+    <build
+        build-mode="COLD"
+        timestamp="1508344577732"
+        verifier="COLD_SWAP_REQUESTED" />
 
 </instant-run>
