@@ -2,6 +2,7 @@
 package log350.example.example6;
 
 import java.util.ArrayList;
+
 //import java.util.List;
 
 import android.content.Context;
@@ -13,6 +14,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.view.MotionEvent;
 import android.view.View;
+
 
 
 
@@ -162,8 +164,6 @@ class CursorContainer {
 	}
 }
 
-
-
 public class DrawingView extends View {
 
 	Paint paint = new Paint();
@@ -173,6 +173,7 @@ public class DrawingView extends View {
 	ShapeContainer shapeContainer = new ShapeContainer();
 	ArrayList< Shape > selectedShapes = new ArrayList< Shape >();
 	CursorContainer cursorContainer = new CursorContainer();
+	ArrayList<Point2D> pointtemp = new ArrayList<Point2D>();
 
 	static final int MODE_NEUTRAL = 0; // the default mode
 	static final int MODE_CAMERA_MANIPULATION = 1; // the user is panning/zooming the camera
@@ -180,6 +181,9 @@ public class DrawingView extends View {
 	static final int MODE_LASSO = 3; // the user is drawing a lasso to select shapes
 	static final int MODE_DELETE = 4;
 	static final int MODE_SHAPE_MANIPULATION_SELECTION = 5;
+	static final int MODE_FRAME = 6;
+	static final int MODE_CREATE = 7;
+
 	int currentMode = MODE_NEUTRAL;
 
 	// This is only used when currentMode==MODE_SHAPE_MANIPULATION, otherwise it is equal to -1
@@ -187,6 +191,8 @@ public class DrawingView extends View {
 
 	MyButton lassoButton = new MyButton( "Lasso", 10, 70, 140, 140 );
 	MyButton deleteButton = new MyButton( "Delete", 10, 220, 140, 140 );
+	MyButton encadreButton = new MyButton("Frame", 10 , 370, 140, 140);
+	MyButton createButton = new MyButton("Create", 10, 520, 140, 140);
 
 	OnTouchListener touchListener;
 	
@@ -237,19 +243,25 @@ public class DrawingView extends View {
 
 		// draw a polygon around the currently selected shapes
 		if ( selectedShapes.size() > 0 ) {
+			pointtemp.clear();
 			ArrayList< Point2D > points = new ArrayList< Point2D >();
 			AlignedRectangle2D rect = new AlignedRectangle2D();
 			for ( Shape s : selectedShapes ) {
 				for ( Point2D p : s.getPoints() ) {
 					points.add( p );
 					rect.bound( p );
+					pointtemp.add( p );
 				}
 			}
-			points = Point2DUtil.computeConvexHull( points );
+			/*points = Point2DUtil.computeConvexHull( points );
 			points = Point2DUtil.computeExpandedPolygon( points, rect.getDiagonal().length()/30 );
-
 			gw.setColor( 1.0f, 0.0f, 0.0f, 0.8f );
-			gw.fillPolygon( points );
+			gw.fillPolygon( points );*/
+
+			pointtemp = Point2DUtil.computeConvexHull( pointtemp );
+			pointtemp = Point2DUtil.computeExpandedPolygon( pointtemp, rect.getDiagonal().length()/30 );
+			gw.setColor( 0.0f, 1.0f, 0.0f, 0.8f );
+			gw.fillPolygon( pointtemp );
 		}
 
 		// draw all the shapes
@@ -259,6 +271,8 @@ public class DrawingView extends View {
 
 		lassoButton.draw( gw, currentMode == MODE_LASSO );
 		deleteButton.draw( gw, currentMode == MODE_DELETE );
+		encadreButton.draw( gw, currentMode == MODE_FRAME);
+		createButton.draw ( gw, currentMode == MODE_CREATE);
 
 		if ( currentMode == MODE_LASSO ) {
 			MyCursor lassoCursor = cursorContainer.getCursorByType( MyCursor.TYPE_DRAGGING, 0 );
@@ -274,7 +288,6 @@ public class DrawingView extends View {
 			gw.setColor( 1.0f, 1.0f, 1.0f );
 			gw.drawString( 50, 50, "[" + cursorContainer.getNumCursors() + " contacts]");
 		}
-
 	}
 	
 	/**
@@ -358,6 +371,10 @@ public class DrawingView extends View {
 								currentMode = MODE_DELETE;
 								cursor.setType( MyCursor.TYPE_BUTTON);
 							}
+							else if(Point2DUtil.isPointInsidePolygon(pointtemp, p_pixels )){
+								currentMode = MODE_SHAPE_MANIPULATION_SELECTION;
+								cursor.setType( MyCursor.TYPE_DRAGGING );
+							}
 							else if ( indexOfShapeBeingManipulated >= 0 ) {
 								currentMode = MODE_SHAPE_MANIPULATION;
 								cursor.setType( MyCursor.TYPE_DRAGGING );
@@ -433,16 +450,22 @@ public class DrawingView extends View {
 						}
 						break;
 					case MODE_DELETE :
-						if (cursorContainer.getNumCursors() == 2 && type == MotionEvent.ACTION_UP && indexOfShapeBeingManipulated>=0) {
-							MyCursor cursor0 = cursorContainer.getCursorByIndex( 0 );
-							MyCursor cursor1 = cursorContainer.getCursorByIndex( 1 );
-							Point2D p_pixels = new Point2D(x,y);
-							Point2D p_world = gw.convertPixelsToWorldSpaceUnits( p_pixels );
-							Shape shape = shapeContainer.getShape( indexOfShapeBeingManipulated );
-							indexOfShapeBeingManipulated = shapeContainer.indexOfShapeContainingGivenPoint( p_world );
-							shapeContainer.deleteShape(indexOfShapeBeingManipulated);
-						}
-							break;
+							if (type == MotionEvent.ACTION_DOWN && indexOfShapeBeingManipulated>=0) {
+								Point2D p_pixels = new Point2D(x,y);
+								Point2D p_world = gw.convertPixelsToWorldSpaceUnits( p_pixels );
+								Shape shape = shapeContainer.getShape( indexOfShapeBeingManipulated );
+								indexOfShapeBeingManipulated = shapeContainer.indexOfShapeContainingGivenPoint( p_world );
+								if(selectedShapes.contains(shape)){
+									selectedShapes.remove(shape);
+								}
+								shapeContainer.deleteShape(indexOfShapeBeingManipulated);
+							}
+							else if ( type == MotionEvent.ACTION_UP ) {
+								cursorContainer.removeCursorByIndex(cursorIndex);
+								if (cursorContainer.getNumCursors() == 0)
+									currentMode = MODE_NEUTRAL;
+							}
+						break;
 					case MODE_LASSO :
 						if ( type == MotionEvent.ACTION_DOWN ) {
 							if ( cursorContainer.getNumCursorsOfGivenType(MyCursor.TYPE_DRAGGING) == 1 )
@@ -468,7 +491,6 @@ public class DrawingView extends View {
 								for ( Shape s : shapeContainer.shapes ) {
 									if ( s.isContainedInLassoPolygon( lassoPolygonPoints ) ) {
 										selectedShapes.add( s );
-										currentMode = TR;
 									}
 								}
 							}
@@ -478,8 +500,9 @@ public class DrawingView extends View {
 							}
 						}
 						break;
+
 						case MODE_SHAPE_MANIPULATION_SELECTION :
-							if (cursorContainer.getNumCursors() == 1 && type == MotionEvent.ACTION_UP) {
+							if (cursorContainer.getNumCursors() == 1 && type == MotionEvent.ACTION_MOVE) {
 									MyCursor cursor0 = cursorContainer.getCursorByIndex( 0 );
 									MyCursor cursor1 = cursorContainer.getCursorByIndex( 0 );
 
@@ -493,6 +516,21 @@ public class DrawingView extends View {
 									);
 								}
 							}
+							else if ( type == MotionEvent.ACTION_UP ) {
+								cursorContainer.removeCursorByIndex( cursorIndex );
+								if ( cursorContainer.getNumCursors() == 0 ) {
+									currentMode = MODE_NEUTRAL;
+									indexOfShapeBeingManipulated = -1;
+								}
+							}
+							break;
+
+						case MODE_FRAME :
+							
+							break;
+
+						case MODE_CREATE :
+
 							break;
 					}
 					

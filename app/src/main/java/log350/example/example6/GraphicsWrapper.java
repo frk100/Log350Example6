@@ -47,14 +47,6 @@ class GraphicsWrapper {
 		return fontHeight;
 	}
 
-
-
-
-
-
-
-
-
 	private float offsetXInPixels = 0;
 	private float offsetYInPixels = 0;
 	private float scaleFactorInWorldSpaceUnitsPerPixel = 1.0f; // greater if user is more zoomed out
